@@ -1,3 +1,4 @@
+.gitignore
 /venv
 /teste/db.sqlite3
 *cpython*
