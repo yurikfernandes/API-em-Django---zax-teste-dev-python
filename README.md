@@ -14,7 +14,7 @@ Ao chamar a rota passando como parâmetro o id do motoboy, deve retornar:
 
 ## ✨ Solução
 
-A explicação da solução pode ser vista em:
+Os dados de entrada mais detalhados e a explicação da solução pode ser vista em:
 https://docs.google.com/presentation/d/14J8kPTRAWp7Hb7FGDPQpx0vuHw0m_XXcIggPebsfMzc/edit?usp=sharing
 
 ## 🚀 Começando
