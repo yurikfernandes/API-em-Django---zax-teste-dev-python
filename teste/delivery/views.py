@@ -1,8 +1,14 @@
-from curses.ascii import isdigit
 from .models import Loja, Motoboy, Pedido
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 from itertools import cycle, islice
 import json
+
+
+def query(objetos):
+    lista = []
+    for objeto in objetos:
+        lista.append(str(objeto))
+    return lista
 
 
 def distribuicao():
@@ -11,17 +17,12 @@ def distribuicao():
     motoboys = Motoboy.objects.all()
     pedidos = Pedido.objects.all()
 
+    lista_motoboys = query(motoboys)
 
-    lista_motoboys = []
-    for motoboy in motoboys:
-        lista_motoboys.append(str(motoboy))
-
-    lista_lojas = []
-    for loja in lojas:
-        lista_lojas.append(str(loja))
+    lista_lojas = query(lojas)
 
     query_prioridade = Motoboy.objects.exclude(prioridade_loja__isnull=True)
-    
+
     lista_prioridades = []
     prioridades = {}
 
@@ -35,7 +36,8 @@ def distribuicao():
     prioridades_motoboy = [str(x['motoboy']) for x in lista_prioridades]
     prioridades_loja = [str(x['loja']) for x in lista_prioridades]
 
-    qtde_motoboys_sem_prioridade = len(lista_motoboys) - len(prioridades_motoboy)
+    qtde_motoboys_sem_prioridade = len(
+        lista_motoboys) - len(prioridades_motoboy)
 
     for item in prioridades_motoboy:
         lista_motoboys_reordenada = lista_motoboys.copy()
@@ -43,7 +45,8 @@ def distribuicao():
         lista_motoboys_reordenada.insert(0, str(item))
 
     quantidade_pedidos = len(pedidos)
-    lista_motoboys_expandida = list(islice(cycle(lista_motoboys_reordenada), quantidade_pedidos))
+    lista_motoboys_expandida = list(
+        islice(cycle(lista_motoboys_reordenada), quantidade_pedidos))
 
     ordem_pedidos_original = []
     for pedido in pedidos:
@@ -54,10 +57,12 @@ def distribuicao():
         lista_lojas_sem_prioridade.remove(prioridade)
 
         pedidos_sem_prioridade = ordem_pedidos_original.copy()
-        pedidos_sem_prioridade = [item for item in pedidos_sem_prioridade if item != prioridade]
+        pedidos_sem_prioridade = [
+            item for item in pedidos_sem_prioridade if item != prioridade]
 
         pedidos_com_prioridade = ordem_pedidos_original.copy()
-        pedidos_com_prioridade = [item for item in pedidos_com_prioridade if item == prioridade]
+        pedidos_com_prioridade = [
+            item for item in pedidos_com_prioridade if item == prioridade]
 
     ordem_pedidos_nova = []
     for pedido in range(quantidade_pedidos):
@@ -71,11 +76,11 @@ def distribuicao():
             ordem_pedidos_nova.append(valor)
             push_motoboys_sem_prioridade -= 1
 
-    ordem_pedidos_nova_reordenada = [m for _, m in sorted(zip(ordem_pedidos_nova, lista_motoboys_expandida))]
+    ordem_pedidos_nova_reordenada = [m for _, m in sorted(
+        zip(ordem_pedidos_nova, lista_motoboys_expandida))]
 
     for index, pedido in enumerate(pedidos):
-        m = Motoboy.objects.filter(id=ordem_pedidos_nova_reordenada[index])[0]
-        pedido.motoboy = m
+        pedido.motoboy = Motoboy.objects.filter(id=ordem_pedidos_nova_reordenada[index])[0]
         pedido.save()
 
     distribuicao = []
@@ -98,7 +103,8 @@ def distribuicao():
             )
 
             loja_pedido = list(Loja.objects.filter(id=pedido.loja.id))[0]
-            motoboy_pedido = list(Motoboy.objects.filter(id=pedido.motoboy.id))[0]
+            motoboy_pedido = list(
+                Motoboy.objects.filter(id=pedido.motoboy.id))[0]
             valor_fixo = motoboy_pedido.valor_fixo
             comissao = loja_pedido.comissao
             valor_pedido = pedido.valor
@@ -119,7 +125,7 @@ def home(request):
 
 
 def motoboy(request, pk):
-    
+
     if len(Pedido.objects.filter(motoboy=pk)) == 0:
         message = {
             "message": "motoboy not found"
