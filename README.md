@@ -64,7 +64,7 @@ cd teste
 
 6. Faça as migrações necessárias:
 ```
-python3 manage.py migrate
+python3 manage.py migrate --run-syncdb
 python3 manage.py makemigrations
 ```
 
