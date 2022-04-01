@@ -1,0 +1,23 @@
+[
+    {
+        "model": "delivery.Loja",
+        "pk": 1,
+        "fields": {
+            "comissao": 0.05
+        }
+    },
+    {
+        "model": "delivery.Loja",
+        "pk": 2,
+        "fields": {
+            "comissao": 0.05
+        }
+    },
+    {
+        "model": "delivery.Loja",
+        "pk": 3,
+        "fields": {
+            "comissao": 0.15
+        }
+    }
+]

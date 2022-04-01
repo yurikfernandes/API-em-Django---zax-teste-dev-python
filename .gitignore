@@ -1,0 +1,4 @@
+/venv
+/teste/db.sqlite3
+*cpython*
+/teste/delivery/migrations

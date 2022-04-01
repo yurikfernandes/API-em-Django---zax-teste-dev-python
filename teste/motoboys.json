@@ -1,0 +1,42 @@
+[
+    {
+        "model": "delivery.Motoboy",
+        "pk": 1,
+        "fields": {
+            "valor_fixo": 2,
+            "prioridade_loja": null
+        }
+    },
+    {
+        "model": "delivery.Motoboy",
+        "pk": 2,
+        "fields": {
+            "valor_fixo": 2,
+            "prioridade_loja": null
+        }
+    },
+    {
+        "model": "delivery.Motoboy",
+        "pk": 3,
+        "fields": {
+            "valor_fixo": 2,
+            "prioridade_loja": null
+        }
+    },
+    {
+        "model": "delivery.Motoboy",
+        "pk": 4,
+        "fields": {
+            "valor_fixo": 2,
+            "prioridade_loja": 1
+        }
+    },
+    {
+        "model": "delivery.Motoboy",
+        "pk": 5,
+        "fields": {
+            "valor_fixo": 3,
+            "prioridade_loja": null
+        }
+    }
+]
