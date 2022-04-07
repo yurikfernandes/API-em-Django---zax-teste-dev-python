@@ -12,6 +12,13 @@ Ao chamar a rota passando como parâmetro o id do motoboy, deve retornar:
 
 | id do motoboy | pedidos/lojas entregues | quanto vai ganhar |
 
+### Produto final
+Uma aplicação web desenvolvida em Django que calcula e apresenta dados no estilo JSON
+
+## ✨ Solução
+
+Os dados de entrada mais detalhados e a explicação da solução pode ser vista em:
+https://docs.google.com/presentation/d/14J8kPTRAWp7Hb7FGDPQpx0vuHw0m_XXcIggPebsfMzc/edit?usp=sharing
 
 ## 🚀 Começando
 
