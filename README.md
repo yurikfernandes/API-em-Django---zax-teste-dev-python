@@ -7,13 +7,13 @@ Desafio lógico: Distribuir pedidos de lojas para motoboys
 - Motoboys podem atender exclusivamente determinada loja e tem prioridade
 - As lojas não tem exclusividade com motoboys
 
-### Produto final
-Uma aplicação web desenvolvida em Django que calcula e apresenta dados no estilo JSON
-
 ### Output:
 Ao chamar a rota passando como parâmetro o id do motoboy, deve retornar:
 
 | id do motoboy | pedidos/lojas entregues | quanto vai ganhar |
+
+### Produto final
+Uma aplicação web desenvolvida em Django que calcula e apresenta dados no estilo JSON
 
 ## ✨ Solução
 
